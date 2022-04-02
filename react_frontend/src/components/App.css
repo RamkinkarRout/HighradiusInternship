@@ -1,0 +1,23 @@
+.headerContainer {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: aqua;
+  padding: 15px;
+  margin: 0;
+  background: transparent
+    radial-gradient(
+      closest-side at 50% 50%,
+      #426a70 0%,
+      #224749 100%
+    )
+    0% 0%;
+}
+.headerItem {
+  width: 800px;
+  padding: 5px;
+}
+.headerItem > img {
+  width: auto;
+  height: 40px;
+  object-fit: contain;
+}

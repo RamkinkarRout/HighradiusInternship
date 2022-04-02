@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
@@ -91,7 +92,13 @@ public class Search extends HttpServlet {
 				rs.close();
 				con.close();
 				
-			} catch (Exception e) {
+			}
+		  
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+		  
+		  catch (Exception e) {
 				//TODO: handle exception
 				e.printStackTrace();
 			}
