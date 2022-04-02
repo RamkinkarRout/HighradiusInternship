@@ -1,0 +1,5 @@
+package highradius_project.bean;
+
+public class Response {
+
+}
