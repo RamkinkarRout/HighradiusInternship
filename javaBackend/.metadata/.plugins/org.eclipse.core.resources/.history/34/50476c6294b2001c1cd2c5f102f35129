@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -81,10 +80,8 @@ public class All_Data extends HttpServlet {
 			
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			String json = gson.toJson(data);
-			
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
-			response.setHeader("Access-Control-Allow-Origin", "*");
 			try {
 				response.getWriter().write(json);
 			} catch (IOException e) {
@@ -96,16 +93,9 @@ public class All_Data extends HttpServlet {
 			rs.close();
 			con.close();
 			
-		} 
-		
-		catch(SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	
 		
 		
 		

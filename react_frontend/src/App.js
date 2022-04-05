@@ -1,17 +1,13 @@
 import { Fragment, useEffect } from "react";
-import "./App.css";
 import { Header } from "./components/Header";
 import Webfont from "webfontloader";
 import ModalButton from "./components/ModalButton";
-
+import DataTableGrid from "./components/DataTableGrid";
 function App() {
   useEffect(() => {
     Webfont.load({
       google: {
-        families: [
-          "montserrat:400,500,600,700",
-          "sans-serif",
-        ],
+        families: ["Roboto:300,400,500,700", "sans-serif"],
       },
     });
   }, []);
@@ -19,8 +15,8 @@ function App() {
   return (
     <Fragment>
       <Header />
-
       <ModalButton />
+      <DataTableGrid />
     </Fragment>
   );
 }

@@ -4,6 +4,13 @@
 }
 
 body {
+  background: transparent
+    radial-gradient(
+      closest-side at 50% 50%,
+      #1f333f 0%,
+      #1d323f 100%
+    )
+    0% 0%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

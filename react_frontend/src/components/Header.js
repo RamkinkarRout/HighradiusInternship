@@ -1,11 +1,12 @@
-import React, { Fragment } from "react";
+import React from "react";
 import "./App.css";
 import abc from "../images/abc.png";
 import logo from "../images/logo.svg";
+import { Container } from "@mui/material";
 
 export const Header = () => {
   return (
-    <Fragment>
+    <Container maxWidth='xxl'>
       <div className='headerContainer'>
         <div className='headerItem'>
           <img src={abc} alt='abc' />
@@ -15,6 +16,6 @@ export const Header = () => {
         </div>
         <div className='headerItem'></div>
       </div>
-    </Fragment>
+    </Container>
   );
 };
