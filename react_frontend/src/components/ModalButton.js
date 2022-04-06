@@ -1,11 +1,14 @@
 import {
   alpha,
   Button,
-  Container,
   InputBase,
   styled,
 } from "@mui/material";
-import React, { Fragment } from "react";
+import React, {
+  Fragment,
+  useContext,
+  useState,
+} from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
@@ -14,6 +17,9 @@ import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import "./App.css";
+import AdvanceSearch from "./AdvanceSearch";
+import { LinkContext } from "../LinkCoontext";
+import { useDebounce } from "use-debounce";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -59,6 +65,41 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const ModalButton = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  let { link, setLink } = useContext(LinkContext);
+
+  console.log(link);
+
+  const [text, setText] = useState("");
+  const [debouncedText] = useDebounce(text, 3000);
+
+  const handleSubmit = (e, link, setLink) => {
+    e.preventDefault();
+    console.log(e.target.value);
+
+    if (debouncedText) {
+      setText(debouncedText);
+    }
+
+    if (
+      //doc_id or cust_number or invoice_id or buisness_year
+
+      e.target.value !== ""
+    ) {
+      setLink(
+        `http://localhost:8080/highradius_project/searchData?doc_id=${text}&cust_number=${text}&invoice_id=${text}&buisness_year=${text}`
+      );
+    } else
+      setLink(
+        `http://localhost:8080/highradius_project/data`
+      );
+
+    console.log(link);
+  };
+
   return (
     <Fragment>
       {/* predict, annalysis, advanceserch */}
@@ -66,14 +107,21 @@ const ModalButton = () => {
       <div className='headerButtonContainer'>
         <div className='headerButtonDiv'>
           <Button variant='contained'>
-            <OnlinePredictionIcon /> PREDICT
+            <OnlinePredictionIcon
+              style={{ marginRight: "10px" }}
+            />
+            PREDICT
           </Button>
           <Button variant='outlined'>
-            <AnalyticsIcon />
+            <AnalyticsIcon
+              style={{ marginRight: "10px" }}
+            />
             ANALYTICS VIEW
           </Button>
-          <Button variant='outlined'>
-            <SavedSearchIcon />
+          <Button variant='outlined' onClick={handleOpen}>
+            <SavedSearchIcon
+              style={{ marginRight: "10px" }}
+            />
             ADVANCE SEARCH
           </Button>
         </div>
@@ -87,7 +135,12 @@ const ModalButton = () => {
             </SearchIconWrapper>
             <StyledInputBase
               placeholder='Search Customer Id'
-              inputProps={{ "aria-label": "search" }}
+              inputProps={{
+                "aria-label": "search customer id",
+              }}
+              onChange={(e) =>
+                handleSubmit(e, link, setLink)
+              }
             />
           </Search>
         </div>
@@ -95,19 +148,27 @@ const ModalButton = () => {
         {/* add, edit, delete             */}
         <div className='headerButtonDiv'>
           <Button variant='outlined'>
-            <AddIcon />
+            <AddIcon style={{ marginRight: "10px" }} />
             ADD
           </Button>
           <Button variant='disabled'>
-            <EditIcon />
+            <EditIcon style={{ marginRight: "10px" }} />
             EDIT
           </Button>
           <Button variant='outlined'>
-            <DeleteForeverIcon />
+            <DeleteForeverIcon
+              style={{ marginRight: "10px" }}
+            />
             DELETE
           </Button>
         </div>
       </div>
+      {open && (
+        <AdvanceSearch
+          open={open}
+          handleClose={handleClose}
+        />
+      )}
     </Fragment>
   );
 };

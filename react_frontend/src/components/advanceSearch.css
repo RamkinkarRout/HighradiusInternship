@@ -1,0 +1,25 @@
+.advFlex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.advFlex > OutlinedInput {
+  padding: 2px;
+  color: white !important;
+}
+
+.advFlexbtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.muiBtn {
+  width: 50%;
+  margin-top: 10px !important;
+  color: white !important;
+  border-color: rgb(196, 196, 196) !important;
+}

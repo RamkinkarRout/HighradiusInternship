@@ -39,21 +39,37 @@
   width: 100%;
 }
 
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font: 6.5rem "Roboto", sans-serif;
-  color: #182933;
-}
-
 .MuiSvgIcon-root {
   color: white !important;
 }
 
 .MuiTablePagination-toolbar {
   color: white !important;
+}
+
+.loading {
+  width: 100vw;
+  height: 100vh;
+  background-color: #182933;
+  display: grid;
+  place-items: center;
+  max-width: 100%;
+}
+
+.loading > div {
+  width: 10vmax;
+  height: 10vmax;
+  border-bottom: 5px solid #607b8b;
+
+  border-radius: 50%;
+
+  animation: loadingRotate 800ms linear infinite;
+}
+
+@keyframes loadingRotate {
+  to {
+    transform: rotateZ(-360deg);
+  }
 }
 
 @media screen and (max-width: 600px) {

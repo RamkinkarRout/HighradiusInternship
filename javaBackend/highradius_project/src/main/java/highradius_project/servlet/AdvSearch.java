@@ -86,6 +86,7 @@ public class AdvSearch extends HttpServlet {
 				String json = gson.toJson(data);
 				response.setContentType("application/json");
 				response.setCharacterEncoding("UTF-8");
+				response.setHeader("Access-Control-Allow-Origin", "*");
 				try {
 					response.getWriter().write(json);
 				} catch (IOException e) {

@@ -2,6 +2,7 @@
   margin: 0;
   scroll-behavior: smooth;
   overflow: -moz-hidden-unscrollable;
+  overflow-x: clip;
 }
 
 body {

@@ -10,7 +10,7 @@ const Footer = () => {
           <span className='footerSpan'>
             <a href='https://www.instagram.com/iamramkinkarrout/'>
               Privacy Policy
-            </a>{" "}
+            </a>
             | ©️ 2020 Highradius Corporation. All rights
             reserved.
           </span>

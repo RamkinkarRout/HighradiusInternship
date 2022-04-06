@@ -1,24 +1,27 @@
 import React, {
   Fragment,
   useCallback,
+  useContext,
   useEffect,
   useState,
 } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import axios from "axios";
 import "./App.css";
+import { LinkContext } from "../LinkCoontext";
+import Loader from "./Loader";
 
 const DataTableGrid = () => {
   const [result, setResult] = useState([]);
 
+  let { link } = useContext(LinkContext);
+
   const fetchDAta = useCallback(async () => {
-    const { data } = await axios.get(
-      "http://localhost:8080/highradius_project/data"
-    );
+    const { data } = await axios.get(link);
 
     console.log(data);
     setResult(data);
-  }, []);
+  }, [link]);
 
   useEffect(() => {
     fetchDAta();
@@ -193,6 +196,22 @@ const DataTableGrid = () => {
     console.log(param);
     console.log(event);
   };
+
+  const handelRowDelete = (param, event) => {
+    console.log("CheckBoxArray:");
+    // console.log(param);
+    // console.log(event);
+
+    //selecting array of checkbox
+    const checkBoxArray = param.map((item) => {
+      console.log(item);
+
+      return item;
+    });
+
+    console.log(checkBoxArray);
+  };
+
   return (
     <Fragment>
       <div
@@ -202,7 +221,7 @@ const DataTableGrid = () => {
           backgroundColor: "#182933",
         }}
       >
-        {result ? (
+        {result.length ? (
           <DataGrid
             style={{ color: "white" }}
             rows={result}
@@ -211,13 +230,27 @@ const DataTableGrid = () => {
             rowLength={result.length}
             maxColumns={columns.length}
             checkboxSelection
-            disableSelectionOnClick
+            onSelectionModelChange={handelRowDelete}
+            colHeight={100}
+            rowsPerPageOptions={[10, 20, 30, 40, 50, 100]}
             onRowClick={handleRowClick}
+            loading={false}
           />
         ) : (
-          <div className='loading'>
-            Data is still Loading...
-          </div>
+          <DataGrid
+            style={{ color: "white" }}
+            rows={result}
+            getRowId={(row) => row.sl_no}
+            columns={columns}
+            rowLength={result.length}
+            maxColumns={columns.length}
+            checkboxSelection
+            onSelectionModelChange={handelRowDelete}
+            colHeight={100}
+            rowsPerPageOptions={[10, 20, 30, 40, 50, 100]}
+            onRowClick={handleRowClick}
+            loading={true}
+          />
         )}
       </div>
     </Fragment>

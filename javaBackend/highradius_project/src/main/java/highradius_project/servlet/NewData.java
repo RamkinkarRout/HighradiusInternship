@@ -110,11 +110,13 @@ public class NewData extends HttpServlet {
 			int rows = ps.executeUpdate();
 
 			if (rows > 0) {
-				response.getWriter().append("<h1> inserted data</h1>");
+				response.getWriter().append("<h1>Data inserted Successfully</h1>");
+				response.setHeader("Access-Control-Allow-Origin", "*");
 				
 			}
 			else {
 				response.getWriter().append("<h1>Error in inserting data</h1>");
+				response.setHeader("Access-Control-Allow-Origin", "*");
 				con.rollback();
 			}
 			

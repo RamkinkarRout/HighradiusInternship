@@ -79,4 +79,14 @@
     <servlet-name>Sfsafsaf</servlet-name>
     <url-pattern>/Sfsafsaf</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Delete_data</display-name>
+    <servlet-name>Delete_data</servlet-name>
+    <servlet-class>highradius_project.servlet.Delete_data</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Delete_data</servlet-name>
+    <url-pattern>/Delete_data</url-pattern>
+  </servlet-mapping>
 </web-app>

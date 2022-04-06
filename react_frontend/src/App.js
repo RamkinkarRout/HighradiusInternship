@@ -1,11 +1,18 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Header } from "./components/Header";
 import Webfont from "webfontloader";
 import ModalButton from "./components/ModalButton";
-import DataTableGrid from "./components/DataTableGrid";
 import Footer from "./components/Footer";
+import { LinkContext } from "./LinkCoontext";
+import DataTableGrid from "./components/DataTableGrid";
+
+//creating link context
 
 function App() {
+  let [link, setLink] = useState(
+    "http://localhost:8080/highradius_project/data"
+  );
+
   useEffect(() => {
     Webfont.load({
       google: {
@@ -16,9 +23,13 @@ function App() {
 
   return (
     <Fragment>
-      <Header />
-      <ModalButton />
-      <DataTableGrid />
+      <LinkContext.Provider value={{ link, setLink }}>
+        <Header />
+
+        <ModalButton />
+
+        <DataTableGrid />
+      </LinkContext.Provider>
       <Footer />
     </Fragment>
   );

@@ -39,8 +39,12 @@ public class Search extends HttpServlet {
 		
 
 		 Connection con = DbConnection.createConnect();
-		 String cust_number = request.getParameter("cust_number");
-		 String query = "select * from winter_internship where cust_number = " + cust_number;
+
+	        String doc_id = request.getParameter("doc_id");
+	        String cust_number = request.getParameter("cust_number");
+	        String invoice_id = request.getParameter("invoice_id");
+	        String buisness_year = request.getParameter("buisness_year");
+	       String query = "select * from winter_internship where doc_id = '"+doc_id+"' or cust_number = '"+cust_number+"' or invoice_id = '"+invoice_id+"' or buisness_year = '"+buisness_year+"'";
 		
 		  try {
 
@@ -79,8 +83,10 @@ public class Search extends HttpServlet {
 				
 				Gson gson = new GsonBuilder().setPrettyPrinting().create();
 				String json = gson.toJson(data);
+			
 				response.setContentType("application/json");
 				response.setCharacterEncoding("UTF-8");
+				response.setHeader("Access-Control-Allow-Origin", "*");
 				try {
 					response.getWriter().write(json);
 				} catch (IOException e) {
