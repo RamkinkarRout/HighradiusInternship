@@ -1,0 +1,32 @@
+.footerContainer {
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  font: roboto 2rem;
+}
+.footerSpan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+.footerSpan > a {
+  text-decoration: none;
+  color: rgb(25, 118, 210);
+}
+.footerSpan > a:hover {
+  text-decoration: underline;
+}
+.footerSpan > a:active {
+  text-decoration: underline;
+}
+.footerSpan > a:visited {
+  text-decoration: none;
+}
+.footerSpan > a:focus {
+  text-decoration: none;
+}
+.footerSpan {
+  margin-left: 10px;
+  color: white;
+}

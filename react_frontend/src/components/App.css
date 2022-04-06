@@ -1,4 +1,5 @@
 .headerContainer {
+  width: 100%;
   display: grid;
   grid-template-columns: auto auto auto;
   padding: 20px;
@@ -20,8 +21,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: auto auto auto;
-  padding: 10px;
-  padding-bottom: 20px;
+  padding: 20px;
   margin: 0;
 }
 .headerButtonDiv {
@@ -33,9 +33,27 @@
   margin: 0;
   color: white !important;
 }
+
 .headerButtonDiv > Button {
   color: white !important;
   width: 100%;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font: 6.5rem "Roboto", sans-serif;
+  color: #182933;
+}
+
+.MuiSvgIcon-root {
+  color: white !important;
+}
+
+.MuiTablePagination-toolbar {
+  color: white !important;
 }
 
 @media screen and (max-width: 600px) {

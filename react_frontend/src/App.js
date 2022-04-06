@@ -3,6 +3,8 @@ import { Header } from "./components/Header";
 import Webfont from "webfontloader";
 import ModalButton from "./components/ModalButton";
 import DataTableGrid from "./components/DataTableGrid";
+import Footer from "./components/Footer";
+
 function App() {
   useEffect(() => {
     Webfont.load({
@@ -17,6 +19,7 @@ function App() {
       <Header />
       <ModalButton />
       <DataTableGrid />
+      <Footer />
     </Fragment>
   );
 }

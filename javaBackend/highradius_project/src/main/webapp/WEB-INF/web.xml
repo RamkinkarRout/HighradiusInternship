@@ -69,4 +69,14 @@
     <servlet-name>Search</servlet-name>
     <url-pattern>/Search</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Sfsafsaf</display-name>
+    <servlet-name>Sfsafsaf</servlet-name>
+    <servlet-class>highradius_project.servlet.Sfsafsaf</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Sfsafsaf</servlet-name>
+    <url-pattern>/Sfsafsaf</url-pattern>
+  </servlet-mapping>
 </web-app>

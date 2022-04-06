@@ -17,6 +17,8 @@ import com.google.gson.GsonBuilder;
 
 import highradius_project.bean.Response;
 
+
+
 /**
  * Servlet implementation class All_Data
  */
@@ -38,16 +40,17 @@ public class All_Data extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		int rowToget = 10;
+//		int rowToget = 10;
 
 		try {
 			
 
 			Connection con = DbConnection.createConnect();
 			//per row 10 data
-			String query = "SELECT * FROM grey_goose.winter_internship LIMIT " + rowToget ;
+			String query = "SELECT * FROM grey_goose.winter_internship" ;
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(query);
+		
 			
 			ArrayList<Response> data = new ArrayList<>();
 			while (rs.next()) {
@@ -82,13 +85,16 @@ public class All_Data extends HttpServlet {
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			String json = gson.toJson(data);
 			
+			
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			response.setHeader("Access-Control-Allow-Origin", "*");
+			
 			try {
 				response.getWriter().write(json);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 

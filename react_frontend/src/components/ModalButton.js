@@ -60,55 +60,54 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const ModalButton = () => {
   return (
-    <Fragment maxWidth='xxl'>
+    <Fragment>
       {/* predict, annalysis, advanceserch */}
-      <Container maxWidth='xxl'>
-        <div className='headerButtonContainer'>
-          <div className='headerButtonDiv'>
-            <Button variant='contained'>
-              <OnlinePredictionIcon /> PREDICT
-            </Button>
-            <Button variant='outlined'>
-              <AnalyticsIcon />
-              ANALYTICS VIEW
-            </Button>
-            <Button variant='outlined'>
-              <SavedSearchIcon />
-              ADVANCE SEARCH
-            </Button>
-          </div>
 
-          {/* search */}
-
-          <div className='headerButtonDiv'>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder='Search Customer Id'
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
-          </div>
-
-          {/* add, edit, delete             */}
-          <div className='headerButtonDiv'>
-            <Button variant='outlined'>
-              <AddIcon />
-              ADD
-            </Button>
-            <Button variant='disabled'>
-              <EditIcon />
-              EDIT
-            </Button>
-            <Button variant='outlined'>
-              <DeleteForeverIcon />
-              DELETE
-            </Button>
-          </div>
+      <div className='headerButtonContainer'>
+        <div className='headerButtonDiv'>
+          <Button variant='contained'>
+            <OnlinePredictionIcon /> PREDICT
+          </Button>
+          <Button variant='outlined'>
+            <AnalyticsIcon />
+            ANALYTICS VIEW
+          </Button>
+          <Button variant='outlined'>
+            <SavedSearchIcon />
+            ADVANCE SEARCH
+          </Button>
         </div>
-      </Container>
+
+        {/* search */}
+
+        <div className='headerButtonDiv'>
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder='Search Customer Id'
+              inputProps={{ "aria-label": "search" }}
+            />
+          </Search>
+        </div>
+
+        {/* add, edit, delete             */}
+        <div className='headerButtonDiv'>
+          <Button variant='outlined'>
+            <AddIcon />
+            ADD
+          </Button>
+          <Button variant='disabled'>
+            <EditIcon />
+            EDIT
+          </Button>
+          <Button variant='outlined'>
+            <DeleteForeverIcon />
+            DELETE
+          </Button>
+        </div>
+      </div>
     </Fragment>
   );
 };
