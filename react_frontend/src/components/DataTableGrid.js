@@ -9,7 +9,7 @@ import { DataGrid } from "@material-ui/data-grid";
 import axios from "axios";
 import "./App.css";
 import { LinkContext } from "../LinkCoontext";
-import Loader from "./Loader";
+import { LinearProgress } from "@mui/material";
 
 const DataTableGrid = () => {
   const [result, setResult] = useState([]);
@@ -238,8 +238,12 @@ const DataTableGrid = () => {
           />
         ) : (
           <DataGrid
+            components={{
+              LoadingOverlay: LinearProgress,
+            }}
+            loading
             style={{ color: "white" }}
-            rows={result}
+            rows={[]}
             getRowId={(row) => row.sl_no}
             columns={columns}
             rowLength={result.length}
@@ -249,7 +253,6 @@ const DataTableGrid = () => {
             colHeight={100}
             rowsPerPageOptions={[10, 20, 30, 40, 50, 100]}
             onRowClick={handleRowClick}
-            loading={true}
           />
         )}
       </div>

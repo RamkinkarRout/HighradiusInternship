@@ -50,7 +50,7 @@
 .loading {
   width: 100vw;
   height: 100vh;
-  background-color: #182933;
+  background-color: #182933 !important;
   display: grid;
   place-items: center;
   max-width: 100%;
@@ -59,7 +59,7 @@
 .loading > div {
   width: 10vmax;
   height: 10vmax;
-  border-bottom: 5px solid #607b8b;
+  border-bottom: 5px solid #607b8b !important;
 
   border-radius: 50%;
 

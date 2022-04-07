@@ -4,9 +4,11 @@ import {
   InputBase,
   styled,
 } from "@mui/material";
+import { useDebounce } from "use-debounce";
 import React, {
   Fragment,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import SearchIcon from "@mui/icons-material/Search";
@@ -19,7 +21,6 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import "./App.css";
 import AdvanceSearch from "./AdvanceSearch";
 import { LinkContext } from "../LinkCoontext";
-import { useDebounce } from "use-debounce";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -70,27 +71,28 @@ const ModalButton = () => {
   const handleClose = () => setOpen(false);
 
   let { link, setLink } = useContext(LinkContext);
-
-  console.log(link);
-
   const [text, setText] = useState("");
-  const [debouncedText] = useDebounce(text, 3000);
+  const [value] = useDebounce(text, 300);
 
-  const handleSubmit = (e, link, setLink) => {
+  const handleSubmit1 = (e, link, setLink) => {
     e.preventDefault();
-    console.log(e.target.value);
-
-    if (debouncedText) {
-      setText(debouncedText);
+    if (e.target.value !== "") {
+      setText(e.target.value);
+    } else {
+      setLink(
+        "http://localhost:8080/highradius_project/data"
+      );
     }
+  };
 
+  const handleSubmit2 = (value, link, setLink) => {
     if (
       //doc_id or cust_number or invoice_id or buisness_year
 
-      e.target.value !== ""
+      value !== ""
     ) {
       setLink(
-        `http://localhost:8080/highradius_project/searchData?doc_id=${text}&cust_number=${text}&invoice_id=${text}&buisness_year=${text}`
+        `http://localhost:8080/highradius_project/searchData?doc_id=${value}&cust_number=${value}&invoice_id=${value}&buisness_year=${value}`
       );
     } else
       setLink(
@@ -99,6 +101,9 @@ const ModalButton = () => {
 
     console.log(link);
   };
+  useEffect(() => {
+    handleSubmit2(value, link, setLink);
+  }, [link, setLink, value]);
 
   return (
     <Fragment>
@@ -139,7 +144,7 @@ const ModalButton = () => {
                 "aria-label": "search customer id",
               }}
               onChange={(e) =>
-                handleSubmit(e, link, setLink)
+                handleSubmit1(e, link, setLink)
               }
             />
           </Search>
