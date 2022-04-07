@@ -400,3 +400,14 @@
 127.0.0.1 - - [07/Apr/2022:21:35:49 +0530] "GET /highradius_project/data HTTP/1.1" 200 29962518
 127.0.0.1 - - [07/Apr/2022:21:36:01 +0530] "GET /highradius_project/data HTTP/1.1" 200 29962518
 127.0.0.1 - - [07/Apr/2022:21:37:44 +0530] "GET /highradius_project/data HTTP/1.1" 200 29962518
+127.0.0.1 - - [07/Apr/2022:22:06:49 +0530] "GET / HTTP/1.1" 404 752
+127.0.0.1 - - [07/Apr/2022:22:07:13 +0530] "GET /highradius_project/data HTTP/1.1" 200 29962518
+0:0:0:0:0:0:0:1 - - [07/Apr/2022:22:17:01 +0530] "GET /highradius_project/data HTTP/1.1" 200 29962518
+0:0:0:0:0:0:0:1 - - [07/Apr/2022:22:21:48 +0530] "GET /highradius_project/data HTTP/1.1" 200 29962518
+0:0:0:0:0:0:0:1 - - [07/Apr/2022:22:21:52 +0530] "GET /highradius_project/data HTTP/1.1" 200 29962518
+127.0.0.1 - - [07/Apr/2022:22:42:34 +0530] "GET /highradius_project/data HTTP/1.1" 200 29962518
+0:0:0:0:0:0:0:1 - - [07/Apr/2022:22:42:34 +0530] "GET /highradius_project/data HTTP/1.1" 200 29962518
+127.0.0.1 - - [07/Apr/2022:23:13:10 +0530] "GET /highradius_project/data HTTP/1.1" 200 29962518
+0:0:0:0:0:0:0:1 - - [07/Apr/2022:23:13:10 +0530] "GET /highradius_project/data HTTP/1.1" 200 29962518
+127.0.0.1 - - [07/Apr/2022:23:18:53 +0530] "GET /highradius_project/newData?business_code=U001&cust_number=200337148&clear_date=Thu%20Apr%2007%202022%2023:13:44%20GMT+0530%20(India%20Standard%20Time)&buisness_year=2019&doc_id=19293&posting_date=Thu%20Apr%2007%202022%2023:13:44%20GMT+0530%20(India%20Standard%20Time)&document_create_date=Thu%20Apr%2007%202022%2023:13:44%20GMT+0530%20(India%20Standard%20Time)&due_in_date=Thu%20Apr%2007%202022%2023:13:44%20GMT+0530%20(India%20Standard%20Time)&invoice_currency=INR&document_type=RV&posting_id=0004&total_open_amount=6969.5312312&baseline_create_date=Thu%20Apr%2007%202022%2023:13:44%20GMT+0530%20(India%20Standard%20Time)&cust_payment_terms=NAH4&invoice_id=010312 HTTP/1.1" 200 30
+127.0.0.1 - - [07/Apr/2022:23:18:54 +0530] "GET /highradius_project/data HTTP/1.1" 200 29962518

@@ -12,6 +12,7 @@ import React, {
   useContext,
   useState,
 } from "react";
+import { useAlert } from "react-alert";
 import { LinkContext } from "../LinkCoontext";
 import "./advanceSearch.css";
 
@@ -30,8 +31,7 @@ const style = {
 
 const AdvanceSearch = ({ handleAdvClose, open }) => {
   let { link, setLink } = useContext(LinkContext);
-
-  console.log(link);
+  const alert = useAlert();
 
   const [doc_id, setDoc_id] = useState("");
   const [cust_number, setCust_number] = useState("");
@@ -47,10 +47,12 @@ const AdvanceSearch = ({ handleAdvClose, open }) => {
       invoice_id !== "" &&
       buisness_year !== ""
     ) {
+      alert.success("Data Searched Successfully...");
       setLink(
         `http://localhost:8080/highradius_project/advanceSearch?doc_id=${doc_id}&cust_number=${cust_number}&invoice_id=${invoice_id}&buisness_year=${buisness_year}`
       );
     } else {
+      alert.error("Please fill all the fields");
       setLink(
         "http://localhost:8080/highradius_project/data"
       );
@@ -94,6 +96,7 @@ const AdvanceSearch = ({ handleAdvClose, open }) => {
                     setDoc_id(e.target.value)
                   }
                   placeholder='Document Id'
+                  required={true}
                 />
                 <OutlinedInput
                   style={{
@@ -104,6 +107,7 @@ const AdvanceSearch = ({ handleAdvClose, open }) => {
                     setInvoice_id(e.target.value)
                   }
                   placeholder='Invoice Id'
+                  required={true}
                 />
               </div>
               <div className={"advFlex"}>
@@ -118,6 +122,7 @@ const AdvanceSearch = ({ handleAdvClose, open }) => {
                     setCust_number(e.target.value)
                   }
                   placeholder='Customer Number'
+                  required={true}
                 />
                 <OutlinedInput
                   style={{
@@ -128,6 +133,7 @@ const AdvanceSearch = ({ handleAdvClose, open }) => {
                     setBuisness_year(e.target.value)
                   }
                   placeholder='Bussiness Year'
+                  required={true}
                 />
               </div>
             </FormGroup>

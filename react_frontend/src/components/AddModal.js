@@ -10,8 +10,14 @@ import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import DatePicker from "@mui/lab/DatePicker";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import React, { Fragment, useState } from "react";
+import React, {
+  Fragment,
+  useContext,
+  useState,
+} from "react";
 import "./addModal.css";
+import { LinkContext } from "../LinkCoontext";
+import { useAlert } from "react-alert";
 
 const style = {
   position: "absolute",
@@ -31,15 +37,21 @@ const style = {
 };
 
 const AddModal = ({ addOpen, handleAddClose }) => {
+  const { setLink } = useContext(LinkContext);
+  const alert = useAlert();
   const [business_code, setBusiness_code] = useState("");
   const [cust_number, setCust_number] = useState("");
   const [clear_date, setClear_date] = useState(new Date());
   const [buisness_year, setBuisness_year] = useState("");
   const [doc_id, setDoc_id] = useState("");
-  const [posting_date, setPosting_date] = useState("");
+  const [posting_date, setPosting_date] = useState(
+    new Date()
+  );
   const [document_create_date, setDocument_create_date] =
-    useState("");
-  const [due_in_date, setDue_in_date] = useState("");
+    useState(new Date());
+  const [due_in_date, setDue_in_date] = useState(
+    new Date()
+  );
   const [invoice_currency, setInvoice_currency] =
     useState("");
   const [document_type, setDocument_type] = useState("");
@@ -47,10 +59,52 @@ const AddModal = ({ addOpen, handleAddClose }) => {
   const [total_open_amount, setTotal_open_amount] =
     useState("");
   const [baseline_create_date, setBaseline_create_date] =
-    useState("");
+    useState(new Date());
   const [cust_payment_terms, setCust_payment_terms] =
     useState("");
   const [invoice_id, setInvoice_id] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (
+      business_code !== "" &&
+      cust_number !== "" &&
+      buisness_year !== "" &&
+      doc_id !== "" &&
+      invoice_currency !== "" &&
+      document_type !== "" &&
+      posting_id !== "" &&
+      total_open_amount !== "" &&
+      cust_payment_terms !== "" &&
+      invoice_id !== ""
+    ) {
+      alert.success("Data Added Successfully...");
+      setLink(
+        `http://localhost:8080/highradius_project/newData?business_code=${business_code}&cust_number=${cust_number}&clear_date=${clear_date}&buisness_year=${buisness_year}&doc_id=${doc_id}&posting_date=${posting_date}&document_create_date=${document_create_date}&due_in_date=${due_in_date}&invoice_currency=${invoice_currency}&document_type=${document_type}&posting_id=${posting_id}&total_open_amount=${total_open_amount}&baseline_create_date=${baseline_create_date}&cust_payment_terms=${cust_payment_terms}&invoice_id=${invoice_id}`
+      );
+      setBusiness_code("");
+      setCust_number("");
+      setClear_date(new Date());
+      setBuisness_year("");
+      setDoc_id("");
+      setPosting_date(new Date());
+      setDocument_create_date(new Date());
+      setDue_in_date(new Date());
+      setInvoice_currency("");
+      setDocument_type("");
+      setPosting_id("");
+      setTotal_open_amount("");
+      setBaseline_create_date(new Date());
+      setCust_payment_terms("");
+      setInvoice_id("");
+    } else {
+      alert.error("Please fill all the fields");
+      setLink(
+        "http://localhost:8080/highradius_project/data"
+      );
+    }
+    handleAddClose();
+  };
 
   return (
     <Fragment>
@@ -115,7 +169,7 @@ const AddModal = ({ addOpen, handleAddClose }) => {
                       {...params}
                       style={{
                         width: "100%",
-
+                        textAlign: "center",
                         marginRight: "20px",
                         backgroundColor: "white",
                         color: "white",
@@ -151,36 +205,78 @@ const AddModal = ({ addOpen, handleAddClose }) => {
                 onChange={(e) => setDoc_id(e.target.value)}
                 placeholder='Document Id'
               />
-              <OutlinedInput
-                style={{
-                  width: "100%",
-                  marginRight: "20px",
-                  backgroundColor: "white",
-                }}
-                value={posting_date}
-                onChange={() => {}}
-                placeholder='Posting Date'
-              />
-              <OutlinedInput
-                style={{
-                  width: "100%",
-                  marginRight: "20px",
-                  backgroundColor: "white",
-                }}
-                value={document_create_date}
-                onChange={() => {}}
-                placeholder='Document Create Date'
-              />
-              <OutlinedInput
-                style={{
-                  width: "100%",
-                  marginRight: "20px",
-                  backgroundColor: "white",
-                }}
-                value={due_in_date}
-                onChange={() => {}}
-                placeholder='Due In Date'
-              />
+              <LocalizationProvider
+                dateAdapter={AdapterDateFns}
+              >
+                <DatePicker
+                  label='Posting Date'
+                  mask='____/__/__'
+                  value={posting_date}
+                  onChange={(newValue) =>
+                    setPosting_date(newValue)
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      style={{
+                        width: "100%",
+
+                        marginRight: "20px",
+                        backgroundColor: "white",
+                        color: "white",
+                      }}
+                    />
+                  )}
+                />
+              </LocalizationProvider>
+              <LocalizationProvider
+                dateAdapter={AdapterDateFns}
+              >
+                <DatePicker
+                  label='Docunent Created Date'
+                  mask='____/__/__'
+                  value={document_create_date}
+                  onChange={(newValue) =>
+                    setDocument_create_date(newValue)
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      style={{
+                        width: "100%",
+
+                        marginRight: "20px",
+                        backgroundColor: "white",
+                        color: "white",
+                      }}
+                    />
+                  )}
+                />
+              </LocalizationProvider>
+              <LocalizationProvider
+                dateAdapter={AdapterDateFns}
+              >
+                <DatePicker
+                  label='Due Date'
+                  mask='____/__/__'
+                  value={due_in_date}
+                  onChange={(newValue) =>
+                    setDue_in_date(newValue)
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      style={{
+                        width: "100%",
+
+                        marginRight: "20px",
+                        backgroundColor: "white",
+                        color: "white",
+                      }}
+                    />
+                  )}
+                />
+              </LocalizationProvider>
             </div>
 
             {/* --------3rd Row-------- */}
@@ -238,16 +334,30 @@ const AddModal = ({ addOpen, handleAddClose }) => {
 
             {/* --------4th Row-------- */}
             <div className={"advFlexLast"}>
-              <OutlinedInput
-                style={{
-                  width: "49%",
-                  marginRight: "20px",
-                  backgroundColor: "white",
-                }}
-                value={baseline_create_date}
-                onChange={() => {}}
-                placeholder='Baseline Create Date'
-              />
+              <LocalizationProvider
+                dateAdapter={AdapterDateFns}
+              >
+                <DatePicker
+                  label='Baseline Create Date'
+                  mask='____/__/__'
+                  value={baseline_create_date}
+                  onChange={(newValue) =>
+                    setBaseline_create_date(newValue)
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      style={{
+                        width: "49%",
+
+                        marginRight: "20px",
+                        backgroundColor: "white",
+                        color: "white",
+                      }}
+                    />
+                  )}
+                />
+              </LocalizationProvider>
               <OutlinedInput
                 style={{
                   width: "49%",
@@ -280,7 +390,9 @@ const AddModal = ({ addOpen, handleAddClose }) => {
               variant='outlined'
               className='muiBtn'
               style={{ marginRight: "5px" }}
-              onChange={() => {}}
+              onClick={(e) => {
+                handleSubmit(e);
+              }}
             >
               Add
             </Button>
