@@ -65,7 +65,7 @@ const DataTableGrid = () => {
       field: "doc_id",
       headerName: "Doc Id",
       type: "number",
-      width: 110,
+      width: 150,
       editable: false,
     },
     {
@@ -107,16 +107,9 @@ const DataTableGrid = () => {
       field: "posting_id",
       headerName: "Posting Id",
       type: "number",
-      width: 110,
+      width: 150,
       editable: false,
     },
-    // {
-    //   field: "area_business",
-    //   headerName: "Area Business",
-    //   type: "String",
-    //   width: 150,
-    //   editable: false,
-    // },
     {
       field: "total_open_amount",
       headerName: "Total Open Amount",
@@ -142,14 +135,14 @@ const DataTableGrid = () => {
       field: "invoice_id",
       headerName: "Invoice Id",
       type: "number",
-      width: 110,
+      width: 150,
       editable: false,
     },
     {
       field: "isOpen",
       headerName: "Is Open",
       type: "number",
-      width: 110,
+      width: 150,
       editable: false,
     },
 
@@ -157,7 +150,7 @@ const DataTableGrid = () => {
       field: "is_deleted",
       headerName: "Is Deleted",
       type: "number",
-      width: 110,
+      width: 150,
       editable: false,
     },
   ];
@@ -214,16 +207,12 @@ const DataTableGrid = () => {
 
   return (
     <Fragment>
-      <div
-        style={{
-          height: "70vh",
-          width: "100%",
-          backgroundColor: "#182933",
-        }}
-      >
+      <div className='dataGridStyle'>
         {result.length ? (
           <DataGrid
-            style={{ color: "white" }}
+            style={{
+              color: "white",
+            }}
             rows={result}
             getRowId={(row) => row.sl_no}
             columns={columns}
@@ -231,8 +220,7 @@ const DataTableGrid = () => {
             maxColumns={columns.length}
             checkboxSelection
             onSelectionModelChange={handelRowDelete}
-            colHeight={100}
-            rowsPerPageOptions={[10, 20, 30, 40, 50, 100]}
+            rowsPerPageOptions={[10, 20, 40, 50, 100]}
             onRowClick={handleRowClick}
             loading={false}
           />

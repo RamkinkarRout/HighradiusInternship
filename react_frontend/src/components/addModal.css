@@ -1,0 +1,36 @@
+.advFlex {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+.advFlexbtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.muiBtn {
+  width: 50%;
+  margin-top: 10px !important;
+  color: white !important;
+  border-color: rgb(196, 196, 196) !important;
+}
+
+.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+  color: rgb(196, 196, 196) !important;
+  margin-top: 8px !important;
+}
+.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root {
+  color: rgb(196, 196, 196) !important;
+  margin-top: 8px !important;
+}
+.MuiSvgIcon-root,
+MuiSvgIcon-fontSizeMedium,
+css-i4bv87-MuiSvgIcon-root {
+  color: rgb(196, 196, 196) !important;
+  margin-right: 20px !important;
+}

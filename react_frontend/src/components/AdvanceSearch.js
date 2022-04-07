@@ -28,7 +28,7 @@ const style = {
   color: "white",
 };
 
-const AdvanceSearch = ({ handleClose, open }) => {
+const AdvanceSearch = ({ handleAdvClose, open }) => {
   let { link, setLink } = useContext(LinkContext);
 
   console.log(link);
@@ -57,7 +57,7 @@ const AdvanceSearch = ({ handleClose, open }) => {
     }
 
     console.log(link);
-    handleClose();
+    handleAdvClose();
   };
 
   return (
@@ -65,7 +65,7 @@ const AdvanceSearch = ({ handleClose, open }) => {
       <Container maxWidth={"sm"}>
         <Modal
           open={open}
-          onClose={handleClose}
+          onClose={handleAdvClose}
           aria-labelledby='modal-modal-title'
           aria-describedby='modal-modal-description'
         >
@@ -146,7 +146,7 @@ const AdvanceSearch = ({ handleClose, open }) => {
               <Button
                 className='muiBtn'
                 variant='outlined'
-                onClick={handleClose}
+                onClick={handleAdvClose}
               >
                 Cancel
               </Button>

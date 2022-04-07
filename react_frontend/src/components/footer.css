@@ -31,3 +31,25 @@
   margin-left: 10px;
   color: rgb(233, 233, 233);
 }
+
+@media screen and (max-width: 600px) {
+  .footerContainer {
+    font-size: 12px;
+  }
+
+  .footerSpan {
+    font-size: 12px;
+  }
+
+  .footerSpan > a {
+    font-size: 12px;
+  }
+
+  .footerSpan > a:hover {
+    text-decoration: underline;
+  }
+
+  .footerSpan > a:active {
+    text-decoration: underline;
+  }
+}

@@ -1,3 +1,7 @@
+element {
+  line-height: 100%;
+}
+
 .headerContainer {
   width: 100%;
   display: grid;
@@ -45,6 +49,31 @@
 
 .MuiTablePagination-toolbar {
   color: white !important;
+}
+.MuiDataGrid-iconSeparator {
+  display: none !important;
+}
+
+.dataGridStyle {
+  height: 70vh;
+  width: 100%;
+  background-color: #182933;
+}
+
+.MuiDataGrid-columnHeaderDraggableContainer {
+  width: 200px !important;
+  align-items: center;
+}
+
+.MuiDataGrid-columnHeaderTitle {
+  color: white !important;
+  height: 100% !important;
+  width: 100% !important;
+  overflow-wrap: break-word !important;
+  white-space: initial !important;
+  line-height: 100% !important;
+  inline-size: 100% !important;
+  text-align: start !important;
 }
 
 .loading {
@@ -95,7 +124,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 10px;
+    padding: 3px;
     padding-bottom: 20px;
     margin: 0;
   }
@@ -103,13 +132,25 @@
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-    padding: 5px;
-    padding-bottom: 20px;
+    padding: 2px;
+    padding-bottom: 10px;
     margin: 0;
     color: white !important;
   }
   .headerButtonDiv > Button {
     width: 100%;
     font-size: small !important;
+  }
+  .MuiSvgIcon-root {
+    color: white !important;
+  }
+  .MuiTablePagination-toolbar {
+    color: white !important;
+  }
+
+  .dataGridStyle {
+    height: 60vh;
+    width: 100%;
+    background-color: #182933;
   }
 }

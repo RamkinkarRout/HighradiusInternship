@@ -29,3 +29,15 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+@media screen and (max-width: 600px) {
+  * {
+    margin: 0;
+    scroll-behavior: smooth;
+    overflow-x: visible;
+  }
+
+  .MuiTablePagination-toolbar {
+    display: none;
+  }
+}

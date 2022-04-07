@@ -21,6 +21,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import "./App.css";
 import AdvanceSearch from "./AdvanceSearch";
 import { LinkContext } from "../LinkCoontext";
+import AddModal from "./AddModal";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -67,8 +68,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const ModalButton = () => {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleAdvOpen = () => setOpen(true);
+  const handleAdvClose = () => setOpen(false);
+
+  const [addOpen, setAddOpen] = useState(false);
+  const handleAddOpen = () => setAddOpen(true);
+  const handleAddClose = () => setAddOpen(false);
 
   let { link, setLink } = useContext(LinkContext);
   const [text, setText] = useState("");
@@ -123,7 +128,10 @@ const ModalButton = () => {
             />
             ANALYTICS VIEW
           </Button>
-          <Button variant='outlined' onClick={handleOpen}>
+          <Button
+            variant='outlined'
+            onClick={handleAdvOpen}
+          >
             <SavedSearchIcon
               style={{ marginRight: "10px" }}
             />
@@ -152,7 +160,10 @@ const ModalButton = () => {
 
         {/* add, edit, delete             */}
         <div className='headerButtonDiv'>
-          <Button variant='outlined'>
+          <Button
+            variant='outlined'
+            onClick={handleAddOpen}
+          >
             <AddIcon style={{ marginRight: "10px" }} />
             ADD
           </Button>
@@ -171,7 +182,14 @@ const ModalButton = () => {
       {open && (
         <AdvanceSearch
           open={open}
-          handleClose={handleClose}
+          handleAdvClose={handleAdvClose}
+        />
+      )}
+
+      {addOpen && (
+        <AddModal
+          addOpen={addOpen}
+          handleAddClose={handleAddClose}
         />
       )}
     </Fragment>
