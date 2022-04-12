@@ -33,10 +33,7 @@ public class NewData extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Access-Control-Allow-Credentials", "true");
 	}
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -82,7 +79,7 @@ public class NewData extends HttpServlet {
 			Connection con = DbConnection.createConnect();
 			 
 			 String query= "INSERT INTO `grey_goose`.`winter_internship` (`sl_no`,`business_code`, `cust_number`, `clear_date`, `buisness_year`, `doc_id`, `posting_date`, `document_create_date`, `due_in_date`, `invoice_currency`, `document_type`,  `posting_id`,  `total_open_amount`, `baseline_create_date`,  `cust_payment_terms`,  `invoice_id` ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-			 
+		
 		
 			
 			//selecting last element of sl_no
@@ -106,22 +103,20 @@ public class NewData extends HttpServlet {
 			ps.setString(15, cust_payment_terms);
 			ps.setInt(16, invoice_id);
 	
-			int rows = ps.executeUpdate();
-			response.setHeader("Access-Control-Allow-Origin", "*");
-			response.setHeader("Access-Control-Allow-Credentials", "true");
+
+
+
 			
+			int rows = ps.executeUpdate();
 
 			if (rows > 0) {
-				response.setHeader("Access-Control-Allow-Origin", "*");
-				response.setHeader("Access-Control-Allow-Credentials", "true");	response.setHeader("Access-Control-Allow-Origin", "*");
-				response.setHeader("Access-Control-Allow-Credentials", "true");
 				response.getWriter().append("<h1>Data inserted Successfully</h1>");
-			
+				response.setHeader("Access-Control-Allow-Origin", "*");
+				
 			}
 			else {
 				response.getWriter().append("<h1>Error in inserting data</h1>");
 				response.setHeader("Access-Control-Allow-Origin", "*");
-				response.setHeader("Access-Control-Allow-Credentials", "true");
 				con.rollback();
 			}
 			

@@ -14,7 +14,7 @@ import { LinearProgress } from "@mui/material";
 const DataTableGrid = () => {
   const [result, setResult] = useState([]);
 
-  let { link } = useContext(LinkContext);
+  let { link, sl_no } = useContext(LinkContext);
 
   const fetchDAta = useCallback(async () => {
     const { data } = await axios.get(link);
@@ -191,13 +191,21 @@ const DataTableGrid = () => {
   };
 
   const handelRowDelete = (param, event) => {
-    console.log("CheckBoxArray:");
+    // console.log("CheckBoxArray:");
     // console.log(param);
     // console.log(event);
 
     //selecting array of checkbox
     const checkBoxArray = param.map((item) => {
-      console.log(item);
+      //append checkboxArray inside setSl_no array only uniqe value
+
+      if (sl_no.indexOf(item) === -1) {
+        sl_no.push(item);
+      }
+
+      // setSl_no((prev) => [...prev, item]);
+
+      console.log(sl_no);
 
       return item;
     });

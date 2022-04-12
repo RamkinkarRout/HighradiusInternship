@@ -13,6 +13,8 @@ function App() {
     "http://localhost:8080/highradius_project/data"
   );
 
+  let [sl_no, setSl_no] = useState([]);
+
   useEffect(() => {
     Webfont.load({
       google: {
@@ -23,7 +25,9 @@ function App() {
 
   return (
     <Fragment>
-      <LinkContext.Provider value={{ link, setLink }}>
+      <LinkContext.Provider
+        value={{ link, setLink, sl_no, setSl_no }}
+      >
         <Header />
 
         <ModalButton />

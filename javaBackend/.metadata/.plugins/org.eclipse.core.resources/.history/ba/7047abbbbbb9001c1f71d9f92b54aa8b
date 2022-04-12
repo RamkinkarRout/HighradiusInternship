@@ -54,13 +54,12 @@ public class EditData extends HttpServlet {
 			
 			PreparedStatement ps = con.prepareStatement(query);
 			int rs = ps.executeUpdate();
-			response.setHeader("Access-Control-Allow-Origin", "*");
 			if (rs > 0) {
 				response.sendRedirect("/highradius_project/data");
-				
+				response.setHeader("Access-Control-Allow-Origin", "*");
 			} else {
 				response.sendRedirect("/highradius_project/data");
-				
+				response.setHeader("Access-Control-Allow-Origin", "*");
 			}
 			
 		

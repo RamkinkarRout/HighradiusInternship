@@ -85,10 +85,9 @@ public class All_Data extends HttpServlet {
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			String json = gson.toJson(data);
 			
-		
+			response.setHeader("Access-Control-Allow-Origin", "*");
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
-			response.setHeader("Access-Control-Allow-Origin", "*");
 			
 			
 			try {

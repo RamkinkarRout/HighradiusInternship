@@ -22,6 +22,7 @@ import "./App.css";
 import AdvanceSearch from "./AdvanceSearch";
 import { LinkContext } from "../LinkCoontext";
 import AddModal from "./AddModal";
+import Delete from "./Delete";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -75,11 +76,15 @@ const ModalButton = () => {
   const handleAddOpen = () => setAddOpen(true);
   const handleAddClose = () => setAddOpen(false);
 
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const handleDeleteOpen = () => setDeleteOpen(true);
+  const handleDeleteClose = () => setDeleteOpen(false);
+
   let { link, setLink } = useContext(LinkContext);
   const [text, setText] = useState("");
   const [value] = useDebounce(text, 300);
 
-  const handleSubmit1 = (e, link, setLink) => {
+  const handleSubmit1 = (e, setLink) => {
     e.preventDefault();
     if (e.target.value !== "") {
       setText(e.target.value);
@@ -171,7 +176,12 @@ const ModalButton = () => {
             <EditIcon style={{ marginRight: "10px" }} />
             EDIT
           </Button>
-          <Button variant='outlined'>
+          <Button
+            //variant ll be disabled as sl_no is not defined
+
+            variant='outlined'
+            onClick={handleDeleteOpen}
+          >
             <DeleteForeverIcon
               style={{ marginRight: "10px" }}
             />
@@ -190,6 +200,13 @@ const ModalButton = () => {
         <AddModal
           addOpen={addOpen}
           handleAddClose={handleAddClose}
+        />
+      )}
+
+      {deleteOpen && (
+        <Delete
+          deleteOpen={deleteOpen}
+          handleDeleteClose={handleDeleteClose}
         />
       )}
     </Fragment>

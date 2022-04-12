@@ -18,6 +18,7 @@ import React, {
 import "./addModal.css";
 import { LinkContext } from "../LinkCoontext";
 import { useAlert } from "react-alert";
+import axios from "axios";
 
 const style = {
   position: "absolute",
@@ -64,6 +65,19 @@ const AddModal = ({ addOpen, handleAddClose }) => {
     useState("");
   const [invoice_id, setInvoice_id] = useState("");
 
+  //post request
+
+  const fetchData = async (newLink) => {
+    try {
+      const response = await axios.post(newLink);
+      console.log(response);
+      alert.success("Data Added Successfully");
+    } catch (error) {
+      console.log(error);
+      alert.error("Data Added Failed");
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
@@ -78,10 +92,10 @@ const AddModal = ({ addOpen, handleAddClose }) => {
       cust_payment_terms !== "" &&
       invoice_id !== ""
     ) {
-      alert.success("Data Added Successfully...");
-      setLink(
-        `http://localhost:8080/highradius_project/newData?business_code=${business_code}&cust_number=${cust_number}&clear_date=${clear_date}&buisness_year=${buisness_year}&doc_id=${doc_id}&posting_date=${posting_date}&document_create_date=${document_create_date}&due_in_date=${due_in_date}&invoice_currency=${invoice_currency}&document_type=${document_type}&posting_id=${posting_id}&total_open_amount=${total_open_amount}&baseline_create_date=${baseline_create_date}&cust_payment_terms=${cust_payment_terms}&invoice_id=${invoice_id}`
-      );
+      const newLink = `http://localhost:8080/highradius_project/newData?business_code=${business_code}&cust_number=${cust_number}&clear_date=${clear_date}&buisness_year=${buisness_year}&doc_id=${doc_id}&posting_date=${posting_date}&document_create_date=${document_create_date}&due_in_date=${due_in_date}&invoice_currency=${invoice_currency}&document_type=${document_type}&posting_id=${posting_id}&total_open_amount=${total_open_amount}&baseline_create_date=${baseline_create_date}&cust_payment_terms=${cust_payment_terms}&invoice_id=${invoice_id}`;
+
+      fetchData(newLink);
+
       setBusiness_code("");
       setCust_number("");
       setClear_date(new Date());
@@ -104,6 +118,19 @@ const AddModal = ({ addOpen, handleAddClose }) => {
       );
     }
     handleAddClose();
+  };
+
+  //date picker format change to yyyy-mm-dd
+
+  const dateFormat = (newValue) => {
+    const value =
+      newValue.getFullYear() +
+      "-" +
+      (newValue.getMonth() + 1) +
+      "-" +
+      newValue.getDate();
+    console.log(value);
+    return value;
   };
 
   return (
@@ -161,8 +188,11 @@ const AddModal = ({ addOpen, handleAddClose }) => {
                   label='Clear Date'
                   mask='____/__/__'
                   value={clear_date}
+                  views={["year", "month", "day"]}
+                  format='YYYY-MM-DD'
+                  //changing date format to yyyy-mm-dd
                   onChange={(newValue) =>
-                    setClear_date(newValue)
+                    setClear_date(dateFormat(newValue))
                   }
                   renderInput={(params) => (
                     <TextField
@@ -212,8 +242,10 @@ const AddModal = ({ addOpen, handleAddClose }) => {
                   label='Posting Date'
                   mask='____/__/__'
                   value={posting_date}
+                  views={["year", "month", "day"]}
+                  format='YYYY-MM-DD'
                   onChange={(newValue) =>
-                    setPosting_date(newValue)
+                    setPosting_date(dateFormat(newValue))
                   }
                   renderInput={(params) => (
                     <TextField
@@ -236,8 +268,12 @@ const AddModal = ({ addOpen, handleAddClose }) => {
                   label='Docunent Created Date'
                   mask='____/__/__'
                   value={document_create_date}
+                  views={["year", "month", "day"]}
+                  format='YYYY-MM-DD'
                   onChange={(newValue) =>
-                    setDocument_create_date(newValue)
+                    setDocument_create_date(
+                      dateFormat(newValue)
+                    )
                   }
                   renderInput={(params) => (
                     <TextField
@@ -260,8 +296,10 @@ const AddModal = ({ addOpen, handleAddClose }) => {
                   label='Due Date'
                   mask='____/__/__'
                   value={due_in_date}
+                  views={["year", "month", "day"]}
+                  format='YYYY-MM-DD'
                   onChange={(newValue) =>
-                    setDue_in_date(newValue)
+                    setDue_in_date(dateFormat(newValue))
                   }
                   renderInput={(params) => (
                     <TextField
@@ -341,8 +379,12 @@ const AddModal = ({ addOpen, handleAddClose }) => {
                   label='Baseline Create Date'
                   mask='____/__/__'
                   value={baseline_create_date}
+                  views={["year", "month", "day"]}
+                  format='YYYY-MM-DD'
                   onChange={(newValue) =>
-                    setBaseline_create_date(newValue)
+                    setBaseline_create_date(
+                      dateFormat(newValue)
+                    )
                   }
                   renderInput={(params) => (
                     <TextField

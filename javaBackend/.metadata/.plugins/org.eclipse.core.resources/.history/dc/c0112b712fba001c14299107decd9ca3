@@ -28,7 +28,6 @@ public class Delete_data extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

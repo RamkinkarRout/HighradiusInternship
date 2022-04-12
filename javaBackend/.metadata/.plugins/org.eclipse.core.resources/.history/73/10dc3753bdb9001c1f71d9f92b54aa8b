@@ -112,16 +112,12 @@ public class NewData extends HttpServlet {
 			
 
 			if (rows > 0) {
-				response.setHeader("Access-Control-Allow-Origin", "*");
-				response.setHeader("Access-Control-Allow-Credentials", "true");	response.setHeader("Access-Control-Allow-Origin", "*");
-				response.setHeader("Access-Control-Allow-Credentials", "true");
-				response.getWriter().append("<h1>Data inserted Successfully</h1>");
+				response.getWriter().append("<h1>Data inserted Successfully</h1>"));
 			
 			}
 			else {
 				response.getWriter().append("<h1>Error in inserting data</h1>");
-				response.setHeader("Access-Control-Allow-Origin", "*");
-				response.setHeader("Access-Control-Allow-Credentials", "true");
+		
 				con.rollback();
 			}
 			
