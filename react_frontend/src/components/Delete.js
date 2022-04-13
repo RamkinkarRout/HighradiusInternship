@@ -46,7 +46,7 @@ const Delete = ({ deleteOpen, handleDeleteClose }) => {
     //refreshing page after deleting data in 1 seconds
     setTimeout(() => {
       window.location.reload();
-    }, 1000);
+    }, 2000);
 
     // console.log(link);
   }, [setLink]);
@@ -62,11 +62,12 @@ const Delete = ({ deleteOpen, handleDeleteClose }) => {
             `http://localhost:8080/highradius_project/delete?item=${sl_no[i]}`
           );
           alert.success(data);
-          changingLink(setLink);
         }
       } else {
         alert.error("Please select atleast one item");
       }
+
+      changingLink(setLink);
 
       //after deleting the item from sl_no array then setting it to empty array
 
@@ -75,8 +76,6 @@ const Delete = ({ deleteOpen, handleDeleteClose }) => {
     },
     [changingLink, handleDeleteClose, alert]
   );
-
-  useEffect(() => {}, [setLink]);
 
   return (
     <Fragment>

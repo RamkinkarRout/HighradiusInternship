@@ -14,7 +14,8 @@ export const Header = () => {
         <div className='headerItem'>
           <img src={logo} alt='Highradius logo' />
         </div>
-        <div className='headerItem'></div>
+        <div class='invoice-list'></div>
+        <div class='invoice-list'>Invoice List</div>
       </div>
     </Container>
   );

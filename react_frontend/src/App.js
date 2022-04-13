@@ -14,6 +14,7 @@ function App() {
   );
 
   let [sl_no, setSl_no] = useState([]);
+  const [invoice_id, setInvoice_id] = useState("");
 
   useEffect(() => {
     Webfont.load({
@@ -26,7 +27,14 @@ function App() {
   return (
     <Fragment>
       <LinkContext.Provider
-        value={{ link, setLink, sl_no, setSl_no }}
+        value={{
+          link,
+          setLink,
+          sl_no,
+          setSl_no,
+          invoice_id,
+          setInvoice_id,
+        }}
       >
         <Header />
 

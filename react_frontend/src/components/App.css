@@ -6,8 +6,9 @@ element {
   width: 100%;
   display: grid;
   grid-template-columns: auto auto auto;
-  padding: 20px;
-  padding-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  /* padding-bottom: 30px; */
   margin: 0;
 }
 .headerItem {
@@ -18,6 +19,14 @@ element {
   width: auto;
   height: 30px;
   object-fit: contain;
+}
+
+.invoice-list {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: rgb(255 255 255);
+  margin-left: 10px;
 }
 
 .headerButtonContainer {
@@ -32,8 +41,8 @@ element {
   width: 80%;
   display: grid;
   grid-template-columns: auto auto auto;
-  padding: 10px;
-  padding-bottom: 20px;
+  padding: 20px;
+  padding-top: 10px;
   margin: 0;
   color: white !important;
 }
@@ -152,5 +161,8 @@ element {
     height: 60vh;
     width: 100%;
     background-color: #182933;
+  }
+  .invoice-list {
+    display: none;
   }
 }

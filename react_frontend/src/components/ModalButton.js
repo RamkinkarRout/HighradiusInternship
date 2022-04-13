@@ -18,11 +18,13 @@ import SavedSearchIcon from "@mui/icons-material/SavedSearch";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import RefreshIcon from "@mui/icons-material/Refresh";
 import "./App.css";
 import AdvanceSearch from "./AdvanceSearch";
 import { LinkContext } from "../LinkCoontext";
 import AddModal from "./AddModal";
 import Delete from "./Delete";
+import Edit from "./Edit";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -80,40 +82,51 @@ const ModalButton = () => {
   const handleDeleteOpen = () => setDeleteOpen(true);
   const handleDeleteClose = () => setDeleteOpen(false);
 
-  let { link, setLink } = useContext(LinkContext);
+  const [editOpen, setEditOpen] = useState(false);
+  const handleEditOpen = () => setEditOpen(true);
+  const handleEditClose = () => setEditOpen(false);
+
+  let { link, setLink, sl_no, invoice_id } =
+    useContext(LinkContext);
   const [text, setText] = useState("");
   const [value] = useDebounce(text, 300);
+  // console.log("sl_no :", sl_no.length);
+  console.log("invoice_id :", invoice_id);
 
   const handleSubmit1 = (e, setLink) => {
     e.preventDefault();
     if (e.target.value !== "") {
       setText(e.target.value);
     } else {
+      setText("");
+    }
+  };
+
+  const handleSubmit2 = (setLink, value) => {
+    if (value === "") {
+      // console.log("value is empty");
       setLink(
         "http://localhost:8080/highradius_project/data"
+      );
+    } else {
+      // console.log(value);
+      setLink(
+        `http://localhost:8080/highradius_project/searchData?doc_id=${value}&cust_number=${value}&invoice_id=${value}&buisness_year=${value}`
       );
     }
   };
 
-  const handleSubmit2 = (value, link, setLink) => {
-    if (
-      //doc_id or cust_number or invoice_id or buisness_year
-
-      value !== ""
-    ) {
-      setLink(
-        `http://localhost:8080/highradius_project/searchData?doc_id=${value}&cust_number=${value}&invoice_id=${value}&buisness_year=${value}`
-      );
-    } else
-      setLink(
-        `http://localhost:8080/highradius_project/data`
-      );
-
-    console.log(link);
+  const handelRefresh = (e, link, setLink) => {
+    e.preventDefault();
+    setLink(
+      "http://localhost:8080/highradius_project/data"
+    );
+    // console.log(link);
   };
+
   useEffect(() => {
-    handleSubmit2(value, link, setLink);
-  }, [link, setLink, value]);
+    handleSubmit2(setLink, value);
+  }, [value]);
 
   return (
     <Fragment>
@@ -146,7 +159,24 @@ const ModalButton = () => {
 
         {/* search */}
 
-        <div className='headerButtonDiv'>
+        <div
+          className='headerButtonDiv'
+          style={{ justifyContent: "center" }}
+        >
+          <Button
+            variant='outlined'
+            onClick={(e) => {
+              handelRefresh(e, link, setLink);
+            }}
+            style={{
+              maxWidth: "60px",
+              minWidth: "60px",
+              padding: "0px",
+              justifyContent: "flex-end",
+            }}
+          >
+            <RefreshIcon />
+          </Button>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -157,7 +187,7 @@ const ModalButton = () => {
                 "aria-label": "search customer id",
               }}
               onChange={(e) =>
-                handleSubmit1(e, link, setLink)
+                handleSubmit1(e, link, setLink, value)
               }
             />
           </Search>
@@ -172,7 +202,12 @@ const ModalButton = () => {
             <AddIcon style={{ marginRight: "10px" }} />
             ADD
           </Button>
-          <Button variant='disabled'>
+          <Button
+            variant={
+              invoice_id === "" ? "disabled" : "outlined"
+            }
+            onClick={handleEditOpen}
+          >
             <EditIcon style={{ marginRight: "10px" }} />
             EDIT
           </Button>
@@ -207,6 +242,13 @@ const ModalButton = () => {
         <Delete
           deleteOpen={deleteOpen}
           handleDeleteClose={handleDeleteClose}
+        />
+      )}
+
+      {editOpen && (
+        <Edit
+          editOpen={editOpen}
+          handleEditClose={handleEditClose}
         />
       )}
     </Fragment>

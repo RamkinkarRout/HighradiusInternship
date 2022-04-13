@@ -31,6 +31,7 @@ const style = {
 
 const AdvanceSearch = ({ handleAdvClose, open }) => {
   let { link, setLink } = useContext(LinkContext);
+
   const alert = useAlert();
 
   const [doc_id, setDoc_id] = useState("");
@@ -47,14 +48,14 @@ const AdvanceSearch = ({ handleAdvClose, open }) => {
       invoice_id !== "" &&
       buisness_year !== ""
     ) {
-      alert.success("Data Searched Successfully...");
+      alert.success("Data Searcheing ...");
       setLink(
         `http://localhost:8080/highradius_project/advanceSearch?doc_id=${doc_id}&cust_number=${cust_number}&invoice_id=${invoice_id}&buisness_year=${buisness_year}`
       );
     } else {
       alert.error("Please fill all the fields");
       setLink(
-        "http://localhost:8080/highradius_project/data"
+        `http://localhost:8080/highradius_project/data`
       );
     }
 

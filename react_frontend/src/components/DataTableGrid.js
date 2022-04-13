@@ -10,22 +10,30 @@ import axios from "axios";
 import "./App.css";
 import { LinkContext } from "../LinkCoontext";
 import { LinearProgress } from "@mui/material";
+import { useAlert } from "react-alert";
 
 const DataTableGrid = () => {
   const [result, setResult] = useState([]);
+  const alert = useAlert();
 
-  let { link, sl_no } = useContext(LinkContext);
+  let { link, sl_no, setSl_no, invoice_id, setInvoice_id } =
+    useContext(LinkContext);
 
   const fetchDAta = useCallback(async () => {
     const { data } = await axios.get(link);
 
     console.log(data);
-    setResult(data);
-  }, [link]);
+    if (data.length === 0) {
+      setResult([]);
+      alert.error("No Data Found");
+    } else {
+      setResult(data);
+    }
+  }, [alert, link]);
 
   useEffect(() => {
     fetchDAta();
-  }, [fetchDAta]);
+  }, [fetchDAta, link, setSl_no]);
 
   const columns = [
     {
@@ -185,10 +193,14 @@ const DataTableGrid = () => {
   // ];
 
   const handleRowClick = (param, event) => {
+    event.preventDefault();
     console.log("Row:");
     console.log(param);
-    console.log(event);
+
+    //selecting invoice_id from the row data
+    setInvoice_id(param.row.invoice_id);
   };
+  console.log(invoice_id);
 
   const handelRowDelete = (param, event) => {
     // console.log("CheckBoxArray:");
@@ -213,6 +225,8 @@ const DataTableGrid = () => {
     console.log(checkBoxArray);
   };
 
+  // useEffect(() => {}, [sl_no]);
+
   return (
     <Fragment>
       <div className='dataGridStyle'>
@@ -220,6 +234,10 @@ const DataTableGrid = () => {
           <DataGrid
             style={{
               color: "white",
+              borderTop: "0px solid black",
+              borderLeft: "0px solid black",
+              borderRight: "0px solid black",
+              borderBottom: "2px solid black",
             }}
             rows={result}
             getRowId={(row) => row.sl_no}

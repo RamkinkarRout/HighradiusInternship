@@ -30,6 +30,7 @@ public class EditData extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -56,10 +57,10 @@ public class EditData extends HttpServlet {
 			int rs = ps.executeUpdate();
 			response.setHeader("Access-Control-Allow-Origin", "*");
 			if (rs > 0) {
-				response.sendRedirect("/highradius_project/data");
+				response.getWriter().write("Invoice edited Successfully");
 				
 			} else {
-				response.sendRedirect("/highradius_project/data");
+				response.getWriter().write("Incorrect vlaue");
 				
 			}
 			
