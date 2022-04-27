@@ -23,6 +23,7 @@ public class Response {
 	public int isOpen; 
 	public String aging_bucket; 
 	public int is_deleted;
+	
 	public int getSl_no() {
 		return sl_no;
 	}

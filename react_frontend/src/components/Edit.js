@@ -79,7 +79,7 @@ const Edit = ({ editOpen, handleEditClose }) => {
                 paddingBottom: "20px",
               }}
             >
-              Edit Records ?
+              Edit Records
             </Typography>
 
             <FormGroup>

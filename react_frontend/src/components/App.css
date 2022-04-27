@@ -81,7 +81,7 @@ element {
   overflow-wrap: break-word !important;
   white-space: initial !important;
   line-height: 100% !important;
-  inline-size: 100% !important;
+  inline-size: 300px !important;
   text-align: start !important;
 }
 

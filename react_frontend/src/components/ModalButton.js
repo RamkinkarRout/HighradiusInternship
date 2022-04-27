@@ -25,6 +25,7 @@ import { LinkContext } from "../LinkCoontext";
 import AddModal from "./AddModal";
 import Delete from "./Delete";
 import Edit from "./Edit";
+import Analytics from "./Analytics";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -86,17 +87,23 @@ const ModalButton = () => {
   const handleEditOpen = () => setEditOpen(true);
   const handleEditClose = () => setEditOpen(false);
 
-  let { link, setLink, sl_no, invoice_id } =
+  const [analysisOpen, setAnalysisOpen] = useState(false);
+  const handleAnalysisOpen = () => setAnalysisOpen(true);
+  const handleAnalysisClose = () => setAnalysisOpen(false);
+
+  let { link, setLink, invoice_id, sl_no } =
     useContext(LinkContext);
   const [text, setText] = useState("");
   const [value] = useDebounce(text, 300);
   // console.log("sl_no :", sl_no.length);
   console.log("invoice_id :", invoice_id);
+  console.log("value :", value);
 
   const handleSubmit1 = (e, setLink) => {
     e.preventDefault();
     if (e.target.value !== "") {
       setText(e.target.value);
+      console.log("text :", text);
     } else {
       setText("");
     }
@@ -136,13 +143,19 @@ const ModalButton = () => {
         <div className='headerButtonDiv'>
           <Button variant='contained'>
             <OnlinePredictionIcon
-              style={{ marginRight: "10px" }}
+              style={{
+                margin: "0",
+                textAlign: "center",
+              }}
             />
             PREDICT
           </Button>
-          <Button variant='outlined'>
+          <Button
+            variant='outlined'
+            onClick={handleAnalysisOpen}
+          >
             <AnalyticsIcon
-              style={{ marginRight: "10px" }}
+              style={{ margin: "0", textAlign: "center" }}
             />
             ANALYTICS VIEW
           </Button>
@@ -151,7 +164,7 @@ const ModalButton = () => {
             onClick={handleAdvOpen}
           >
             <SavedSearchIcon
-              style={{ marginRight: "10px" }}
+              style={{ margin: "0", textAlign: "center" }}
             />
             ADVANCE SEARCH
           </Button>
@@ -199,7 +212,9 @@ const ModalButton = () => {
             variant='outlined'
             onClick={handleAddOpen}
           >
-            <AddIcon style={{ marginRight: "10px" }} />
+            <AddIcon
+              style={{ margin: "0", textAlign: "center" }}
+            />
             ADD
           </Button>
           <Button
@@ -208,7 +223,9 @@ const ModalButton = () => {
             }
             onClick={handleEditOpen}
           >
-            <EditIcon style={{ marginRight: "10px" }} />
+            <EditIcon
+              style={{ margin: "0", textAlign: "center" }}
+            />
             EDIT
           </Button>
           <Button
@@ -218,7 +235,7 @@ const ModalButton = () => {
             onClick={handleDeleteOpen}
           >
             <DeleteForeverIcon
-              style={{ marginRight: "10px" }}
+              style={{ margin: "0", textAlign: "center" }}
             />
             DELETE
           </Button>
@@ -249,6 +266,13 @@ const ModalButton = () => {
         <Edit
           editOpen={editOpen}
           handleEditClose={handleEditClose}
+        />
+      )}
+
+      {analysisOpen && (
+        <Analytics
+          analysisOpen={analysisOpen}
+          handleAnalysisClose={handleAnalysisClose}
         />
       )}
     </Fragment>

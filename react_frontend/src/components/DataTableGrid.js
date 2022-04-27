@@ -146,6 +146,14 @@ const DataTableGrid = () => {
       width: 150,
       editable: false,
     },
+
+    // {
+    //   field: "aging_bucket",
+    //   headerName: "Aging Bucket",
+    //   type: "number",
+    //   width: 150,
+    //   editable: false,
+    // },
     {
       field: "isOpen",
       headerName: "Is Open",

@@ -1,0 +1,6 @@
+127.0.0.1 - - [28/Apr/2022:00:11:19 +0530] "GET / HTTP/1.1" 404 752
+127.0.0.1 - - [28/Apr/2022:00:11:27 +0530] "GET /highradius_project/data HTTP/1.1" 200 29964897
+0:0:0:0:0:0:0:1 - - [28/Apr/2022:00:11:49 +0530] "GET /highradius_project/data HTTP/1.1" 200 29964897
+0:0:0:0:0:0:0:1 - - [28/Apr/2022:00:13:16 +0530] "GET /highradius_project/analysis?cleardatefrom=2019-04-06&cleardateto=2020-04-15&duedatefrom=2019-04-12&duedateto=2020-04-14&baselinefrom=2019-04-17&baselineto=2020-04-16&invoicecurrency=USD HTTP/1.1" 200 4380055
+0:0:0:0:0:0:0:1 - - [28/Apr/2022:00:13:49 +0530] "GET /highradius_project/advanceSearch?doc_id=&cust_number=&invoice_id=&buisness_year=2020 HTTP/1.1" 200 9236962
+0:0:0:0:0:0:0:1 - - [28/Apr/2022:00:14:06 +0530] "GET /highradius_project/data HTTP/1.1" 200 29964897

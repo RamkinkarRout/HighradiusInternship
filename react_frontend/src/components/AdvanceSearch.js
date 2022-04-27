@@ -43,9 +43,9 @@ const AdvanceSearch = ({ handleAdvClose, open }) => {
     e.preventDefault();
 
     if (
-      doc_id !== "" &&
-      cust_number !== "" &&
-      invoice_id !== "" &&
+      doc_id !== "" ||
+      cust_number !== "" ||
+      invoice_id !== "" ||
       buisness_year !== ""
     ) {
       alert.success("Data Searcheing ...");

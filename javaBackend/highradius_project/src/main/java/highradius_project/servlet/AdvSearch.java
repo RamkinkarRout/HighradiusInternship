@@ -46,7 +46,7 @@ public class AdvSearch extends HttpServlet {
 	        String cust_number = request.getParameter("cust_number");
 	        String invoice_id = request.getParameter("invoice_id");
 	        String buisness_year = request.getParameter("buisness_year");
-	       String query = "select * from winter_internship where doc_id = '"+doc_id+"' and cust_number = '"+cust_number+"' and invoice_id = '"+invoice_id+"' and buisness_year = '"+buisness_year+"'";
+	       String query = "select * from winter_internship where doc_id = '"+doc_id+"' or cust_number = '"+cust_number+"' or invoice_id = '"+invoice_id+"' or buisness_year = '"+buisness_year+"'";
 	        try {
 
 	            ResultSet rs = con.createStatement().executeQuery(query);

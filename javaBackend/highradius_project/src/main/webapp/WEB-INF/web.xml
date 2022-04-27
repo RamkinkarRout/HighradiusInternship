@@ -89,4 +89,24 @@
     <servlet-name>Delete_data</servlet-name>
     <url-pattern>/Delete_data</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Jaha_Tara_name_AChi</display-name>
+    <servlet-name>Jaha_Tara_name_AChi</servlet-name>
+    <servlet-class>highradius_project.servlet.Jaha_Tara_name_AChi</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Jaha_Tara_name_AChi</servlet-name>
+    <url-pattern>/Jaha_Tara_name_AChi</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Analysis</display-name>
+    <servlet-name>Analysis</servlet-name>
+    <servlet-class>highradius_project.servlet.Analysis</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Analysis</servlet-name>
+    <url-pattern>/Analysis</url-pattern>
+  </servlet-mapping>
 </web-app>
